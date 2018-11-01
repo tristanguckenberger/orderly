@@ -1,6 +1,6 @@
 package com.orderly.dao;
 
-public class UserDao {
+public interface UserDao {
 
 	/**
 	 * Not sure if this is needed if we're using Firebase. 

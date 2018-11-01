@@ -1,5 +1,5 @@
 package com.orderly.dao;
 
-public class TaskDao {
+public interface TaskDao {
 
 }

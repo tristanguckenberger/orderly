@@ -1,6 +1,6 @@
 package com.orderly.dao;
 
-public class StoryDao {
+public interface StoryDao {
 
 	/**
 	 * 

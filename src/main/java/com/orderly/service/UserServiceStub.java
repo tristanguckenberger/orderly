@@ -1,5 +1,5 @@
 package com.orderly.service;
 
-public class UserServiceStub {
+public interface UserServiceStub {
 
 }
