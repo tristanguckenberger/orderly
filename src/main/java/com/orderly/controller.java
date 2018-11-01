@@ -26,13 +26,13 @@ import com.google.firebase.cloud.FirestoreClient;
 @Controller
 public class controller {
 	
-	@RequestMapping("/start")
+	@RequestMapping("/signin")
 	public String start() {
-		return "start";
+		return "signin";
 	}
-	@RequestMapping("/project")
+	@RequestMapping("/board")
 	public String project() {
-		return "project";
+		return "board";
 	}
 	@RequestMapping("/signInForm")
 	public String signin(@RequestParam(value="email", required=true, defaultValue="") String email, 
