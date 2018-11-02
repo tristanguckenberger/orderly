@@ -26,10 +26,15 @@ import com.google.firebase.cloud.FirestoreClient;
 @Controller
 public class controller {
 	
-	@RequestMapping("/signin")
+	@RequestMapping(value = {"/signin", ""})
 	public String start() {
-		return "signin";
+		return "signin";	}
+	
+	@RequestMapping("logout")
+	public String logout() {
+		return "logout";
 	}
+
 	@RequestMapping("/board")
 	public String project() {
 		return "board";
