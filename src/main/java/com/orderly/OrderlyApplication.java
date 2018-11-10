@@ -18,7 +18,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import com.google.firebase.FirebaseOptions;
 //import com.google.firebase.cloud.FirestoreClient;
 
-
 @SpringBootApplication
 public class OrderlyApplication {
 
@@ -40,7 +39,7 @@ public class OrderlyApplication {
 //		  System.out.println("User ID: " + document.getId());
 //		  System.out.println("Name: " + document.getString("name"));
 //		  System.out.println("Email: " + document.getString("email"));
-		//}
+		// }
 
 		SpringApplication.run(OrderlyApplication.class, args);
 	}
