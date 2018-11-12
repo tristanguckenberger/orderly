@@ -25,11 +25,12 @@ import com.google.firebase.cloud.FirestoreClient;
 
 @Controller
 public class controller {
-	
-	@RequestMapping(value = {"/signin", ""})
+
+	@RequestMapping(value = { "/signin", "" })
 	public String start() {
-		return "signin";	}
-	
+		return "signin";
+	}
+
 	@RequestMapping("logout")
 	public String logout() {
 		return "logout";
@@ -39,30 +40,30 @@ public class controller {
 	public String project() {
 		return "board";
 	}
+
 	@RequestMapping("/signInForm")
-	public String signin(@RequestParam(value="email", required=true, defaultValue="") String email, 
-			@RequestParam(value="password", required=true, defaultValue="") String password) {
+	public String signin(@RequestParam(value = "email", required = true, defaultValue = "") String email,
+			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
 		return "start";
 	}
+
 	@RequestMapping("/signUpForm")
-	public String signup(@RequestParam(value="email", required=true, defaultValue="") String email, 
-			@RequestParam(value="name", required=true, defaultValue="") String name, 
-			@RequestParam(value="password", required=true, defaultValue="") String password) {
+	public String signup(@RequestParam(value = "email", required = true, defaultValue = "") String email,
+			@RequestParam(value = "name", required = true, defaultValue = "") String name,
+			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
 		try {
 			InputStream serviceAccount = new FileInputStream("src/Orderly-de95d6dd2c5c.json");
 			GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
-			FirebaseOptions options = new FirebaseOptions.Builder()
-			    .setCredentials(credentials)
-			    .build();
-			
+			FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(credentials).build();
+
 			FirebaseApp.initializeApp(options);
-			Firestore db = FirestoreClient.getFirestore();
-			Map<String, Object> usr = new HashMap<>();
-			usr.put("email", email);
-			usr.put("name", name);
-			usr.put("password", password);
-			ApiFuture<DocumentReference> addedDocRef = db.collection("users").add(usr);
-			
+			Firestore firestoreDb = FirestoreClient.getFirestore();
+			Map<String, Object> user = new HashMap<>();
+			user.put("email", email);
+			user.put("name", name);
+			user.put("password", password);
+			ApiFuture<DocumentReference> addedDocRef = firestoreDb.collection("users").add(user);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
