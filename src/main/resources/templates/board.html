@@ -15,8 +15,15 @@
 <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div
-		th:replace="fragments/taskCard :: taskCard(name='Example task', date='October 30, 2018 at 12:24pm', user='William Anderson', description='This is an example of a task description')">
+	
+	<div class="d-flex justify-content-around"> 
+		<!-- Use th:each to render the following div for each column --> 
+		<div class="d-flex flex-column">
+			<!-- Use th:each to render the following div for each task --> 
+			<div
+				th:replace="fragments/taskCard :: taskCard(name='Example task', date='October 30, 2018 at 12:24pm', user='William Anderson', description='This is an example of a task description')">
+			</div>
+		</div>
 	</div>
 </body>
 </html>
