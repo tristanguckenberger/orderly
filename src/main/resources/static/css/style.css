@@ -4,3 +4,26 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+.orderlyColumn {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	margin-top: 16px;
+	border-right: 2px solid lightgrey;
+	width: 250px;
+}
+
+.orderlyColumn:last-child {
+	border-right: none;
+}
+
+.orderlyTask {
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+.orderlyComment {
+	width: 100%;
+	margin: 0 0 8px 0 !important;
+}

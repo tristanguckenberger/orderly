@@ -1,32 +1,19 @@
 package com.orderly;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.google.api.core.ApiFuture;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserRecord;
-import com.google.firebase.auth.UserRecord.CreateRequest;
-import com.google.firebase.cloud.FirestoreClient;
+import com.orderly.service.UserServiceStub;
 
 @Controller
 public class controller {
+	private UserServiceStub userService;
+	
+	public controller() {
+		this.userService = new UserServiceStub();
+	}
 
-	@RequestMapping(value = { "/signin", "" })
+	@RequestMapping("/signin")
 	public String start() {
 		return "signin";
 	}
@@ -48,26 +35,11 @@ public class controller {
 	}
 
 	@RequestMapping("/signUpForm")
-	public String signup(@RequestParam(value = "email", required = true, defaultValue = "") String email,
+	public String signup(
+			@RequestParam(value = "email", required = true, defaultValue = "") String email,
 			@RequestParam(value = "name", required = true, defaultValue = "") String name,
 			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
-		try {
-			InputStream serviceAccount = new FileInputStream("src/Orderly-de95d6dd2c5c.json");
-			GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
-			FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(credentials).build();
-
-			FirebaseApp.initializeApp(options);
-			Firestore firestoreDb = FirestoreClient.getFirestore();
-			Map<String, Object> user = new HashMap<>();
-			user.put("email", email);
-			user.put("name", name);
-			user.put("password", password);
-			ApiFuture<DocumentReference> addedDocRef = firestoreDb.collection("users").add(user);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
+		this.userService.createUser(email, name, password);
 		return "start";
 	}
 }

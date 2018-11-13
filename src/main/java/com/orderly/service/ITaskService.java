@@ -1,5 +1,5 @@
 package com.orderly.service;
 
-public interface SprintService {
+public interface ITaskService {
 
 }

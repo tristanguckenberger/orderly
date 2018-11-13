@@ -1,14 +1,12 @@
-<div th:fragment="signInForm">
-	<form class="form-signin pr-4" style="width: 350px;" action="#"
-		th:action="@{/signInForm}" method="GET">
-		<div class="form-group">
-			<input type="email" class="form-control rounded-0"
-				placeholder="Email address" required autofocus name="email">
-		</div>
-		<div class="form-group">
-			<input type="password" class="form-control rounded-0 mb-2"
-				placeholder="Password" required name="password">
-		</div>
-		<button class="btn btn-dark btn-block" type="submit">Sign in</button>
-	</form>
-</div>
+<form class="form-signin pr-4" style="width: 350px;" action="# th:fragment="signInForm""
+	th:action="@{/signInForm}" method="GET">
+	<div class="form-group">
+		<input type="email" class="form-control rounded-0"
+			placeholder="Email address" required autofocus name="email">
+	</div>
+	<div class="form-group">
+		<input type="password" class="form-control rounded-0 mb-2"
+			placeholder="Password" required name="password">
+	</div>
+	<button class="btn btn-dark btn-block" type="submit">Sign in</button>
+</form>

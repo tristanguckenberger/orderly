@@ -1,11 +1,9 @@
-<div th:fragment="comment(name, date, text)">
-	<div class="list-group" style="width: 350px;">
-		<div class="list-group-item">
-			<div class="d-flex align-items-end flex-wrap">
-				<strong th:text="${name}" class="mr-2"></strong> <small
-					th:text="${date}" class="text-secondary"></small>
-			</div>
-			<p th:text="${text}"></p>
+<div class="orderlyComment list-group" th:fragment="comment(name, date, text)">
+	<div class="list-group-item">
+		<div class="d-flex align-items-end flex-wrap">
+			<strong th:text="${name}" class="mr-2"></strong>
+			<small th:text="${date}" class="text-secondary"></small>
 		</div>
+		<p th:text="${text}"></p>
 	</div>
 </div>
