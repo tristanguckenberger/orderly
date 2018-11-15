@@ -13,12 +13,12 @@ public class controller {
 		this.userService = new UserServiceStub();
 	}
 
-	@RequestMapping("/signin")
+	@RequestMapping(value= {"/signin","/login"})
 	public String start() {
 		return "signin";
 	}
 
-	@RequestMapping("logout")
+	@RequestMapping(value= {"/logout","/signout"})
 	public String logout() {
 		return "logout";
 	}
