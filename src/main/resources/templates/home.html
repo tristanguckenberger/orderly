@@ -27,11 +27,11 @@
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Search</button>
 			</form>
-			<form action="#" class="form-signin border-left pl-4" style="width: 350px;" th:action="@{/createProject}" th:object="${project}" method="POST">
+			<form class="form-signin border-left pl-4" style="width: 350px;" action="#" th:action="@{/createBoard}" th:object="${project}" method="POST">
 				<h5>Create a Project</h5>
 				<div class="form-group">
 				<!-- ADD th:field="*{name}" to line 34 -->
-					<input class="form-control rounded-0" type="text" required autofocus placeholder="Project Name" aria-label="Text" name="name"  />
+					<input class="form-control rounded-0" type="text" required autofocus placeholder="Project Name" aria-label="Text" name="name" th:field="*{name}" />
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Create</button>
 			</form>

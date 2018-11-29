@@ -22,9 +22,6 @@ import org.slf4j.LoggerFactory;
 @Controller
 public class controller {
 	
-	public controller() {
-		
-	}
 	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -32,10 +29,10 @@ public class controller {
 	private IProjectService projectService;
 	
 	@RequestMapping("/createBoard")
-	public String createBoard(@ModelAttribute Project project, BindingResult errors, Model model) {
+	public String createBoard(Project project) {
 		
 		try {
-			//projectService.save();
+			projectService.save(project);
 		} catch (Exception e) {
 			log.error("unable to save project", e);
 			e.printStackTrace();
@@ -76,7 +73,9 @@ public class controller {
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("project", new Project());
+		model.addAttribute("name");
 		return "home";
 	}
 
