@@ -6,24 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Column {
+public class Cols {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int columnId;
-	private String columnName;
+	private int id;
+	private String name;
 	private int projectId;
 	
 	public int getId() {
-		return columnId;
+		return id;
 	}
-	public void setId(int columnId) {
-		this.columnId = columnId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getName() {
-		return columnName;
+		return name;
 	}
-	public void setName(String columnName) {
-		this.columnName = columnName;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

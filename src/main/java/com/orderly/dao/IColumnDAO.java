@@ -2,14 +2,14 @@ package com.orderly.dao;
 
 import java.util.List;
 
-import com.orderly.dto.Column;
+import com.orderly.dto.Cols;
 
 public interface IColumnDAO {
 	
-	boolean save(Column column) throws Exception;
+	boolean save(Cols cols) throws Exception;
 	
-	Iterable<Column> fetchAll() throws Exception;
+	Iterable<Cols> fetchAll() throws Exception;
 	
-	List<Column> fetchColumnsByProjectId(int projectId);
+	List<Cols> fetchColumnsByProjectId(int projectId);
 	
 }

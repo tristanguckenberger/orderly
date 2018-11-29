@@ -10,27 +10,27 @@ import javax.persistence.Id;
 public class Task {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int taskId;
-	private String taskName;
-	private String taskDescription;
-	private int columnId;
+	private int id;
+	private String name;
+	private String description;
+	private int colId;
 	
-	public int getTaskId() {
-		return taskId;
+	public int getId() {
+		return id;
 	}
-	public void setTaskId(int taskId) {
-		this.taskId = taskId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getName() {
-		return taskName;
+		return name;
 	}
-	public void setName(String taskName) {
-		this.taskName = taskName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDescription() {
-		return taskDescription;
+		return description;
 	}
-	public void setDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.orderly.dto.Column;
+import com.orderly.dto.Cols;
 import com.orderly.dto.Project;
 import com.orderly.dto.Task;
 import com.orderly.service.IColumnService;
@@ -50,20 +50,20 @@ public class controller {
 		return "board";
 	}
 	
-//	@Autowired
-//	private IColumnService columnService;
-//	
-//	@RequestMapping("/createColumn")
-//	public String createColumn(Column column) {
-//		column.setName("column name");
-//		try {
-//			columnService.save(column);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "error";
-//		}
-//		return "board";
-//	}
+	@Autowired
+	private IColumnService columnService;
+	
+	@RequestMapping("/createColumn")
+	public String createColumn(Cols cols) {
+		cols.setName("project1");
+		try {
+			columnService.save(cols);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "/error";
+		}
+		return "board";
+	}
 	
 	@RequestMapping("/")
 	public String home() {
