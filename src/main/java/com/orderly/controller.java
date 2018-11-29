@@ -1,6 +1,5 @@
 package com.orderly;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,20 +50,20 @@ public class controller {
 		return "board";
 	}
 	
-	@Autowired
-	private IColumnService columnService;
-	
-	@RequestMapping("/createColumn")
-	public String createColumn(Column column) {
-		column.setName("column name");
-		try {
-			columnService.save(column);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-		return "board";
-	}
+//	@Autowired
+//	private IColumnService columnService;
+//	
+//	@RequestMapping("/createColumn")
+//	public String createColumn(Column column) {
+//		column.setName("column name");
+//		try {
+//			columnService.save(column);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return "error";
+//		}
+//		return "board";
+//	}
 	
 	@RequestMapping("/")
 	public String home() {
