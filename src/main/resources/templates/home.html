@@ -23,15 +23,14 @@
 				<h5>Find a Project</h5>
 				<div class="form-group">
 					<input class="form-control rounded-0" type="search" required
-						autofocus placeholder="Project Name" aria-label="Search">
+						autofocus placeholder="Project Name" aria-label="Search" th:field="*{name}">
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Search</button>
 			</form>
-			<form class="form-signin border-left pl-4" style="width: 350px;" action="/searchResults">
+			<form action="#" class="form-signin border-left pl-4" style="width: 350px;" th:action="@{/createProject}" th:object="${project}" method="POST">
 				<h5>Create a Project</h5>
 				<div class="form-group">
-					<input class="form-control rounded-0" type="search" required
-						autofocus placeholder="Project Name" aria-label="Search">
+					<input class="form-control rounded-0" type="text" required autofocus placeholder="Project Name" aria-label="Text" name="name"  />
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Create</button>
 			</form>
