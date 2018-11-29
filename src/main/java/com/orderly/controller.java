@@ -1,26 +1,69 @@
 package com.orderly;
 
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.orderly.service.UserServiceStub;
+
+import com.orderly.dto.Column;
+import com.orderly.dto.Project;
+import com.orderly.dto.Task;
+import com.orderly.service.IColumnService;
+import com.orderly.service.IProjectService;
+import com.orderly.service.ITaskService;
 
 @Controller
 public class controller {
-	private UserServiceStub userService;
 	
 	public controller() {
-		this.userService = new UserServiceStub();
+		
 	}
 
-	@RequestMapping("/signin")
-	public String start() {
-		return "signin";
+	@Autowired
+	private IProjectService projectService;
+	
+	@RequestMapping("/createBoard")
+	public String createBoard(Project project) {
+		project.setName("project1");
+		try {
+			projectService.save(project);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "board";
 	}
-
-	@RequestMapping("/logout")
-	public String logout() {
-		return "home";
+	
+	@Autowired
+	private ITaskService taskService;
+	
+	@RequestMapping("/createTask")
+	public String createTask(Task task) {
+		task.setName("project1");
+		task.setDescription("Demo Description");
+		try {
+			taskService.save(task);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "board";
+	}
+	
+	@Autowired
+	private IColumnService columnService;
+	
+	@RequestMapping("/createColumn")
+	public String createColumn(Column column) {
+		column.setName("column name");
+		try {
+			columnService.save(column);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "board";
 	}
 	
 	@RequestMapping("/")
@@ -32,19 +75,8 @@ public class controller {
 	public String project() {
 		return "board";
 	}
-
-	@RequestMapping("/signInForm")
-	public String signin(@RequestParam(value = "email", required = true, defaultValue = "") String email,
-			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
-		return "start";
-	}
-
-	@RequestMapping("/signUpForm")
-	public String signup(
-			@RequestParam(value = "email", required = true, defaultValue = "") String email,
-			@RequestParam(value = "name", required = true, defaultValue = "") String name,
-			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
-		this.userService.createUser(email, name, password);
-		return "start";
+	@RequestMapping("/searchResults")
+	public String results() {
+		return "searchResults";
 	}
 }

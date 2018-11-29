@@ -1,0 +1,7 @@
+<div th:fragment="searchResults(projectName)">
+	<!-- Results Modal -->
+	<div class="card orderlyTask" data-toggle="modal" data-target="#exampleModalCenter">
+	<!-- Use th:each to render the following div for each result  -->
+		<div th:replace="fragments/result :: result"></div>
+	</div>
+</div>

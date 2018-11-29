@@ -1,26 +1,36 @@
 package com.orderly.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Task {
-	private int id;
-	private String name;
-	private String description;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int taskId;
+	private String taskName;
+	private String taskDescription;
+	private int columnId;
 	
-	public int getId() {
-		return id;
+	public int getTaskId() {
+		return taskId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
 	}
 	public String getName() {
-		return name;
+		return taskName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String taskName) {
+		this.taskName = taskName;
 	}
 	public String getDescription() {
-		return description;
+		return taskDescription;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription(String taskDescription) {
+		this.taskDescription = taskDescription;
 	}
 }
