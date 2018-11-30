@@ -15,20 +15,19 @@ public class ColumnDAO implements IColumnDAO {
 
 	@Override
 	public boolean save(Cols cols) throws Exception {
-		// TODO Auto-generated method stub
 		columnRepository.save(cols);
 		return false;
 	}
 
 	@Override
 	public Iterable<Cols> fetchAll() throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<Cols> fetchColumnsByProjectId(int projectId) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
