@@ -20,5 +20,10 @@ public class ProjectDAO implements IProjectDAO {
 	public List<Project> fetch(String searchFilter) throws Exception {
 		return null;
 	}
+	
+	@Override
+	public Iterable<Project> fetchAll() throws Exception {
+		return projectRepository.findAll();
+	}
 
 }

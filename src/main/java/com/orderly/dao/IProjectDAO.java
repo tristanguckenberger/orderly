@@ -9,4 +9,6 @@ public interface IProjectDAO {
 	Project save(Project project) throws Exception;
 
 	List<Project> fetch(String searchFilter) throws Exception;
+
+	Iterable<Project> fetchAll() throws Exception;
 }

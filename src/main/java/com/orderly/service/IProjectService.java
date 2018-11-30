@@ -12,4 +12,6 @@ public interface IProjectService {
 	void setProjectDAO(IProjectDAO projectDAO);
 
 	IProjectDAO getProjectDAO();
+
+	Iterable<Project> fetchAll() throws Exception;
 }

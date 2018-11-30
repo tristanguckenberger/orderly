@@ -19,18 +19,19 @@
 	<div
 		class="d-flex h-100 flex-column align-items-center justify-content-center">
 		<div class="d-flex justify-content-center align-items-center">
-			<form class="form-signin pr-4" style="width: 350px;">
+			<form class="form-signin pr-4" style="width: 350px;" action="#" th:action="@{/board}" th:object="${project}" method="post">
 				<h5>Find a Project</h5>
 				<div class="form-group">
-					<input class="form-control rounded-0" type="search" required
-						autofocus placeholder="Project Name" aria-label="Search">
+					<select class="form-control" th:field="*{id}">
+					    <option th:each="project : ${allProjects}" th:value="${project.id}" th:text="${project.name}">
+					    </option>
+					</select>
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Search</button>
 			</form>
 			<form class="form-signin border-left pl-4" style="width: 350px;" action="#" th:action="@{/createBoard}" th:object="${project}" method="POST">
 				<h5>Create a Project</h5>
 				<div class="form-group">
-				<!-- ADD th:field="*{name}" to line 34 -->
 					<input class="form-control rounded-0" type="text" required autofocus placeholder="Project Name" aria-label="Text" name="name" th:field="*{name}" />
 				</div>
 				<button class="btn btn-dark btn-block" type="submit">Create</button>

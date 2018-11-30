@@ -18,6 +18,11 @@ public class ProjectService implements IProjectService {
 		project.setName("Test Project");
 		return project;
 	}
+	
+	@Override
+	public Iterable<Project> fetchAll() throws Exception {
+		return projectDAO.fetchAll();
+	}
 
 	@Override
 	public Project save(Project project) throws Exception {

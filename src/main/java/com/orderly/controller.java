@@ -4,7 +4,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +28,14 @@ public class controller {
 	@Autowired
 	private IProjectService projectService;
 	
+	@Autowired
+	private ITaskService taskService;
+	
+	@Autowired
+	private IColumnService columnService;
+	
 	@RequestMapping("/createBoard")
 	public String createBoard(Project project) {
-		
 		try {
 			Project savedProject = projectService.save(project);
 			return "redirect:/board/" + savedProject.getId();
@@ -37,10 +45,7 @@ public class controller {
 			return "error";
 		}
 	}
-	
-	@Autowired
-	private ITaskService taskService;
-	
+		
 	@RequestMapping("/createTask")
 	public String createTask(Task task) {
 		task.setName("project1");
@@ -53,10 +58,7 @@ public class controller {
 		}
 		 return "redirect:/";
 	}
-	
-	@Autowired
-	private IColumnService columnService;
-	
+		
 	@RequestMapping("/createColumn")
 	public String createColumn(Cols cols) {
 		cols.setName("project1");
@@ -64,22 +66,38 @@ public class controller {
 			columnService.save(cols);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/error";
+			return "error";
 		}
 		 return "redirect:/";
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home(Model model) {
-		model.addAttribute("project", new Project());
-		model.addAttribute("name");
-		return "home";
+	public ModelAndView home(Model model) {
+		Iterable<Project> allProjects;
+		try {
+			allProjects = projectService.fetchAll();
+	        ModelAndView mav = new ModelAndView("home");
+	        mav.addObject("project", new Project());
+	        mav.addObject("allProjects", allProjects);
+	        return mav;
+		} catch (Exception e) {
+	        ModelAndView mav = new ModelAndView("error");
+			e.printStackTrace();
+			return mav;
+		}
 	}
 
-	@RequestMapping("/board/{id}")
+	@GetMapping("/board/{id}")
 	public ModelAndView project(@PathVariable("id") int projectId) {
         ModelAndView mav = new ModelAndView("board");
         mav.addObject("project", projectService.fetchById(projectId));
+        return mav;
+	}
+	
+	@PostMapping("/board")
+	public ModelAndView project(@ModelAttribute Project project) {
+        ModelAndView mav = new ModelAndView("board");
+        mav.addObject("project", projectService.fetchById(project.getId()));
         return mav;
 	}
 	
