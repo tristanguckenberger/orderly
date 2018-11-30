@@ -6,7 +6,7 @@ import com.orderly.dto.Project;
 
 public interface IProjectDAO {
 	
-	boolean save(Project project) throws Exception;
+	Project save(Project project) throws Exception;
 
 	List<Project> fetch(String searchFilter) throws Exception;
 }

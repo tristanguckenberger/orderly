@@ -12,9 +12,8 @@ public class ProjectDAO implements IProjectDAO {
 	ProjectRepository projectRepository;
 
 	@Override
-	public boolean save(Project project) throws Exception {
-		projectRepository.save(project);
-		return false;
+	public Project save(Project project) throws Exception {
+		return projectRepository.save(project);
 	}
 
 	@Override

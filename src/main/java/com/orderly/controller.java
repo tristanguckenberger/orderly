@@ -4,11 +4,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.orderly.dto.Cols;
 import com.orderly.dto.Project;
@@ -17,11 +16,9 @@ import com.orderly.service.IColumnService;
 import com.orderly.service.IProjectService;
 import com.orderly.service.ITaskService;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Controller
 public class controller {
-	
 	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -32,13 +29,13 @@ public class controller {
 	public String createBoard(Project project) {
 		
 		try {
-			projectService.save(project);
+			Project savedProject = projectService.save(project);
+			return "redirect:/board/" + savedProject.getId();
 		} catch (Exception e) {
 			log.error("unable to save project", e);
 			e.printStackTrace();
 			return "error";
 		}
-		 return "redirect:/";
 	}
 	
 	@Autowired
@@ -79,10 +76,13 @@ public class controller {
 		return "home";
 	}
 
-	@RequestMapping("/board")
-	public String project() {
-		return "board";
+	@RequestMapping("/board/{id}")
+	public ModelAndView project(@PathVariable("id") int projectId) {
+        ModelAndView mav = new ModelAndView("board");
+        mav.addObject("project", projectService.fetchById(projectId));
+        return mav;
 	}
+	
 	@RequestMapping("/searchResults")
 	public String results() {
 		return "searchResults";

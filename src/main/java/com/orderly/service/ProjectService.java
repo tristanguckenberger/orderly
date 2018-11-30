@@ -13,13 +13,15 @@ public class ProjectService implements IProjectService {
 	
 	@Override
 	public Project fetchById(int id) {
-		return null;
+		Project project = new Project();
+		project.setId(id);
+		project.setName("Test Project");
+		return project;
 	}
 
 	@Override
-	public boolean save(Project project) throws Exception {
-		projectDAO.save(project);
-		return false;
+	public Project save(Project project) throws Exception {
+		return projectDAO.save(project);
 	}
 
 	@Override
