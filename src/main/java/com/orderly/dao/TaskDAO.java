@@ -19,7 +19,7 @@ public class TaskDAO implements ITaskDAO {
 
 	@Override
 	public List<Task> fetchTasksByColumnId(int columnId) {
-		return null;
+		return taskRepository.findByColumnId(columnId);
 	}
 
 }

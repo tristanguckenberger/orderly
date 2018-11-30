@@ -21,14 +21,12 @@ public class ColumnDAO implements IColumnDAO {
 
 	@Override
 	public Iterable<Cols> fetchAll() throws Exception {
-		
-		return null;
+		return columnRepository.findAll();
 	}
 
 	@Override
 	public List<Cols> fetchColumnsByProjectId(int projectId) {
-		
-		return null;
+		return columnRepository.findByProjectId(projectId);
 	}
 
 }
